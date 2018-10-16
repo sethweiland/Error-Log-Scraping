@@ -8,10 +8,11 @@ from oauth2client.tools import run_flow, argparser
 #from Users\sweiland\Project_calculate_milestone_time\calc_milestone_time import connect_to_google, get_parameters, update_columns
 #this function uses oauth2client module in order to connect to google api for google sheets
 def connect_to_google():
-    CLIENT_ID='684799499853-bjclnratrtjuhbjt0k01iin6cvsuuj35.apps.googleusercontent.com'
-    CLIENT_SECRET='7gXW9K9XayXgJjttwEKcqJzO'
+    #remove sensisitve info from code
+    CLIENT_ID='#'
+    CLIENT_SECRET='#'
     flow=OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope='https://www.googleapis.com/auth/drive', redirect_uri='http://localhost:8080/')
-    storage=Storage('client_secret_684799499853-bjclnratrtjuhbjt0k01iin6cvsuuj35.apps.googleusercontent.com.json')
+    storage=Storage('#')
     credentials=run_flow(flow, storage, argparser.parse_args([]))
 
     data = {
@@ -138,16 +139,11 @@ for file in list_of_files:
     print(len(list_of_error_date))
     print(len(list_of_id))
     print(len(list_of_errors))
-"""
-list_of_tuples = []
-for index, item in enumerate(list_of_errors):
-    split_string = item.split('[')
-    str_tuple = (split_string[0], '[' + split_string[1])
-    list_of_tuples.append(str_tuple)
-print(list_of_tuples)
-"""
 
+    
+    
 
+#write to a google sheets spreadsheet
 sheet_list = ['10-01-2018', '10-02-2018', '10-03-2018', '10-04-2018', '10-05-2018', '10-08-2018', '10-09-2018']
     # create a gspread spreadsheet object from a URL, we can also use sheet_id or sheet name.
 gc = connect_to_google()
